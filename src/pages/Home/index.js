@@ -1,28 +1,45 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, StatusBar, ScrollView } from 'react-native';
+
+import { SvgPencil, SvgHouse, SvgProfile } from './../CustomIcons'
 
 export default function Home() {
 
 
-    
-    function mostrar() {
-        
+    function createDrawing() {
+        return (
+            <TouchableOpacity onPress={{}}>
+                <View style={styles.profile}>
+                    <SvgProfile />
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
+    function Profile() {
+        return (
+            <TouchableOpacity onPress={() => {}}>
+                <View style={styles.profile}>
+                    <SvgProfile />
+                </View>
+            </TouchableOpacity>
+        )
     }
     function Drawing() {
-        
+
         const [titulo, setTitulo] = useState()
-        
+
         const [condition, setCondition] = useState(true)
 
         return (
 
             <View >
-                <TouchableOpacity onLongPress={() => condition ? setCondition(false) : setCondition(true)}>
+                <TouchableOpacity onLongPress={() => condition ? setCondition(false) : setCondition(true)} onPress={() =>{}}>
                     <View style={styles.drawing}>
                         <View style={styles.backDrawing}></View>
 
                         <View style={styles.flexEnd}>
-                            { condition ? <Text style={styles.text}>{titulo}</Text> : <TextInput style={styles.input}onChangeText={setTitulo}>{titulo}</TextInput> }
+                            {condition ? <Text style={styles.text}>{titulo}</Text> : <TextInput style={styles.input} onChangeText={setTitulo}>{titulo}</TextInput>}
                         </View>
 
                     </View>
@@ -37,11 +54,35 @@ export default function Home() {
     return (
 
         <View style={styles.container}>
-            <Drawing />
-            <Drawing />
-            <Drawing/>
-            <Drawing/>
+            <StatusBar/>
+            <View>
+                <Profile />
+            </View>
+
+
+            <ScrollView>
+            
+                <View style={styles.flexRow}>
+                    <View style={styles.gapper}>
+                        <Drawing />
+                        <Drawing />
+                        <Drawing />
+                        <Drawing />
+                        <Drawing />
+                    </View>
+                    <View style={styles.gapper}>
+                        <Drawing />
+                        <Drawing />
+                        <Drawing />
+                        <Drawing />
+                        <Drawing />
+                    </View>
+                </View>
+
+                <Text style={{ color: 'white', marginTop: 170, position: 'absolute', bottom: 10, left: '50%', }}>qwerty</Text>
+            </ScrollView>
         </View>
+
 
     );
 }
@@ -49,9 +90,18 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: 'black'
+    },
+
+    flexRow: {
+        flexDirection: 'row', 
+        gap: 40, justifyContent: 'center', 
+        alignItems: 'center', 
+        marginTop: 20 
+    },
+
+    gapper: {
+        gap:20
     },
 
     drawing: {
@@ -60,6 +110,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
+        margin: 12
     },
 
     backDrawing: {
@@ -82,13 +133,25 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 20,
         backgroundColor: 'blue',
-        fontSize:12,
-        color:'white'
+        fontSize: 12,
+        color: 'white'
     },
 
     flexEnd: {
         width: 120,
         height: 105,
         justifyContent: 'flex-end',
+    },
+
+    profile: {
+        marginTop:10,
+        marginBottom:10,
+        marginLeft:30,
+        width: 43,
+        height: 43,
+        backgroundColor: '#FF005C',
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });

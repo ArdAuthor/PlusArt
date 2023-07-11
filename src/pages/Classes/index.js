@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-export default function Notifications() {
+export default function Jonas() {
 
  return (
    <View style={estilos.container}>
@@ -15,6 +15,6 @@ const estilos = StyleSheet.create({
         flex: 1,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#00ff'
+        backgroundColor:'red'
     }
 });
