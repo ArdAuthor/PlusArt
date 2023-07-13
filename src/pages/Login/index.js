@@ -2,103 +2,121 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
-import {SvgFacebook, SvgGoogle, SvgArrowLeft} from '../CustomIcons'
+import { SvgFacebook, SvgGoogle, SvgArrowLeft } from '../CustomIcons'
+
+import firebase from '../../services/firebaseConnection'
 
 import Cadastro from '../Cadastro';
 
 // import Cadastro from ''
 
 export default function Login() {
-
-    const [nome, setNome] = useState();
-    const [senha, setSenha] = useState();
+   /* console.log('hello world!') */
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-
-
-    function login() {
-        if (nome === 'Rennan' && senha === 'qwerty') {
-            navigation.navigate('Cadastro');
-        }
-        else {
-            alert('Dados Incorretos')
-        }
-
+    function cadastro() {
+        navigation.navigate('Cadastro');
     }
 
-    return (
+        async function logar() {
 
-        <View style={estilos.container}>
+            if (email === '' || password === '') {
+                alert('Informe o usuário e a senha');
+                return;
+            }
+            await firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((value) => {
+                    navigation.navigate('Home', { user: value.user.email })
+                    //Navegando usuario para Home e levando o email do usuario para a tela home
 
-            <Text style={estilos.textao}> Login </Text>
+                })
+                .catch((error) => {
+                    alert('Ops algo deu errado!');
+                    return;
+                    //Der algum erro mostrar o alert e barrar aqui.
+                })
 
-            <View style={estilos.telaPrimaria}>
+            setEmail('');
+            setPassword('');
+        }
 
-                <TextInput
-                    style={estilos.input}
-                    onChangeText={setNome}
-                    placeholder='Email'
-                    placeholderTextColor={'#000'}
-                    keyboardType='email-address'
+        return (
 
-                />
-                <TextInput
-                    style={estilos.input}
-                    onChangeText={setSenha}
-                    placeholder='Senha'
-                    placeholderTextColor={'#000'}
-                    secureTextEntry={true}
-                    
-                />
+            <View style={estilos.container}>
 
-                <View style={estilos.menos}>
-                    <TouchableOpacity style={estilos.botao} onPress={login}>
-                        <Text style={estilos.textoBotao}>Entrar</Text>
-                    </TouchableOpacity>
+                <Text style={estilos.textao}> Login </Text>
 
-                    <View style={[estilos.textosRow, estilos.marginTopper]}>
-                        <Text style={estilos.normalText}>Esqueci minha </Text>
-                        <TouchableOpacity onPress={login}>
-                            <Text style={estilos.highText}>Senha</Text>
+                <View style={estilos.telaPrimaria}>
+
+                    <TextInput
+                        style={estilos.input}
+                        onChangeText={(texto) => setEmail(texto)}
+                        value={email}
+                        placeholder='Email'
+                        placeholderTextColor={'#000'}
+                        keyboardType='email-address'
+
+                    />
+                    <TextInput
+                        style={estilos.input}
+                        onChangeText={(texto) => setPassword(texto)}
+                        value={password}
+                        placeholder='Senha'
+                        placeholderTextColor={'#000'}
+                        secureTextEntry={true}
+
+                    />
+
+                    <View style={estilos.menos}>
+                        <TouchableOpacity style={estilos.botao} onPress={logar}>
+                            <Text style={estilos.textoBotao}>Entrar</Text>
                         </TouchableOpacity>
 
-                    </View>
-
-
-
-                    <View style={estilos.telaSecundaria}>
-
-                        <View style={estilos.rowBola}>
-                            <TouchableOpacity>
-                               <SvgGoogle/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity>
-                                <SvgFacebook/>
+                        <View style={[estilos.textosRow, estilos.marginTopper]}>
+                            <Text style={estilos.normalText}>Esqueci minha </Text>
+                            <TouchableOpacity onPress={() => { }}>
+                                <Text style={estilos.highText}>Senha</Text>
                             </TouchableOpacity>
 
                         </View>
 
+
+
+                        <View style={estilos.telaSecundaria}>
+
+                            <View style={estilos.rowBola}>
+                                <TouchableOpacity>
+                                    <SvgGoogle />
+                                </TouchableOpacity>
+
+                                <TouchableOpacity>
+                                    <SvgFacebook />
+                                </TouchableOpacity>
+
+                            </View>
+
+                        </View>
+
+                        <View style={estilos.textosRow}>
+
+                            <Text style={estilos.normalText}> Não tem conta? </Text>
+
+                            <TouchableOpacity onPress={cadastro}>
+                                <Text style={estilos.highText}> Inscreva-se</Text>
+
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
 
-                    <View style={estilos.textosRow}>
-
-                        <Text style={estilos.normalText}> Não tem conta? </Text>
-
-                        <TouchableOpacity onPress={login}>
-                            <Text style={estilos.highText}> Inscreva-se</Text>
-
-                        </TouchableOpacity>
-                    </View>
 
                 </View>
-
-
             </View>
-        </View>
-    );
+        );
 
-}
+    }
 
 const estilos = StyleSheet.create({
     container: {
@@ -118,7 +136,7 @@ const estilos = StyleSheet.create({
     input: {
         backgroundColor: '#fff',
         padding: 12,
-        marginTop: 55,
+        marginTop: 70,
         borderRadius: 15
 
     },
@@ -128,8 +146,8 @@ const estilos = StyleSheet.create({
         color: 'white'
     },
     botao: {
-        padding: 18,
-        borderWidth:1.5,
+        padding: 16,
+        borderWidth: 1.5,
         borderColor: '#FF005C',
         marginTop: 60,
         borderRadius: 30,
@@ -189,9 +207,10 @@ const estilos = StyleSheet.create({
         borderRadius: 100,
     },
 
-    textao:{
-        color:'#fff',
-        fontSize:36,
-        fontWeight:'bold'
+    textao: {
+        color: '#fff',
+        fontSize: 36,
+        fontWeight: 'bold',
+        marginTop: 40,
     },
 });

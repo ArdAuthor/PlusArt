@@ -47,7 +47,7 @@ export default function StackRoutes() {
             />
 
             <Stake.Screen
-                name="Home2"
+                name="Home"
                 component={Home}
                 options={{
                     title: 'Meu App',
