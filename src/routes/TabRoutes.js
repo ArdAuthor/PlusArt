@@ -14,7 +14,6 @@ import { SvgHouse, SvgPost, SvgRing, SvgMaca, SvgPencil } from './../pages/Custo
 
 //import StackRoutes from './StackRoutes';
 
-import StackRoutes from '../routes/StackRoutes';
 import Classes from '../pages/Classes';
 
 const Tab = createBottomTabNavigator();
@@ -31,17 +30,6 @@ export default function TabRoutes() {
         tabBarInactiveTintColor: '#000'
       }}
     >
-
-      <Tab.Screen
-        name="Home"
-        component={StackRoutes}
-        options={{
-          tabBarIcon: ({ color, size }) => {
-            return <SvgHouse cor={color} />
-          },
-          headerShown: false
-        }}
-      />
 
       <Tab.Screen
         name="Feed"

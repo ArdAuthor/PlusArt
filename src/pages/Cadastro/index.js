@@ -28,55 +28,38 @@ export default function Cadastro() {
 
         <View style={estilos.container}>
 
-            <Text style={estilos.textao}> Login </Text>
+            <Text style={estilos.textao}> Cadastro </Text>
 
             <View style={estilos.telaPrimaria}>
 
                 <TextInput
                     style={estilos.input}
                     onChangeText={setNome}
-                    placeholder='Email...'
+                    placeholder='Email'
                     placeholderTextColor={'#000'}
-
+                    keyboardType='email-address'
                 />
                 <TextInput
                     style={estilos.input}
                     onChangeText={setSenha}
-                    placeholder='Senha...'
+                    placeholder='Senha'
                     placeholderTextColor={'#000'}
-
+                    secureTextEntry={true}
                 />
 
                 <TextInput
-                    style={estilos.input}
+                    style={[estilos.input, estilos.menosMargem ]}
                     onChangeText={setSenha}
-                    placeholder='Confirme sua senha...'
+                    placeholder='Confirme sua senha'
                     placeholderTextColor={'#000'}
+                    secureTextEntry={true}
 
                 />
 
                 <View style={estilos.menos}>
                     <TouchableOpacity style={estilos.botao} onPress={login}>
-                        <Text style={estilos.textoBotao}>Entrar</Text>
+                        <Text style={estilos.textoBotao}>Prosseguir</Text>
                     </TouchableOpacity>
-
-                    <View style={[estilos.textosRow, estilos.marginTopper]}>
-                        <Text style={estilos.normalText}>Esqueci minha </Text>
-                        <TouchableOpacity onPress={login}>
-                            <Text style={estilos.highText}>Senha</Text>
-                        </TouchableOpacity>
-
-                    </View>
-
-                    <View style={estilos.textosRow}>
-
-                        <Text style={estilos.normalText}> Não tem conta? </Text>
-
-                        <TouchableOpacity onPress={login}>
-                            <Text style={estilos.highText}> Inscreva-se</Text>
-
-                        </TouchableOpacity>
-                    </View>
 
                 </View>
 
@@ -105,9 +88,12 @@ const estilos = StyleSheet.create({
     input: {
         backgroundColor: '#fff',
         padding: 12,
-        marginTop: 55,
+        marginTop: 80,
         borderRadius: 15
 
+    },
+    menosMargem:{
+        marginTop:50
     },
     texto: {
         fontSize: 30,
@@ -116,7 +102,9 @@ const estilos = StyleSheet.create({
     },
     botao: {
         padding: 18,
-        backgroundColor: '#FF005C',
+        backgroundColor: '#000',
+        borderWidth:1.5,
+        borderColor: '#FF005C',
         marginTop: 60,
         borderRadius: 30,
     },
@@ -177,7 +165,7 @@ const estilos = StyleSheet.create({
 
     textao: {
         color: '#fff',
-        fontSize: 30,
+        fontSize: 36,
         fontWeight: 'bold'
     },
 });

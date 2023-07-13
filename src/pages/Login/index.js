@@ -4,6 +4,8 @@ import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-nativ
 import { useNavigation } from '@react-navigation/native'
 import {SvgFacebook, SvgGoogle, SvgArrowLeft} from '../CustomIcons'
 
+import Cadastro from '../Cadastro';
+
 // import Cadastro from ''
 
 export default function Login() {
@@ -16,7 +18,7 @@ export default function Login() {
 
     function login() {
         if (nome === 'Rennan' && senha === 'qwerty') {
-            navigation.navigate('Sobre');
+            navigation.navigate('Cadastro');
         }
         else {
             alert('Dados Incorretos')
@@ -35,17 +37,20 @@ export default function Login() {
                 <TextInput
                     style={estilos.input}
                     onChangeText={setNome}
-                    placeholder='Usuário...'
+                    placeholder='Email'
                     placeholderTextColor={'#000'}
+                    keyboardType='email-address'
 
                 />
                 <TextInput
                     style={estilos.input}
                     onChangeText={setSenha}
-                    placeholder='Senha...'
+                    placeholder='Senha'
                     placeholderTextColor={'#000'}
-
+                    secureTextEntry={true}
+                    
                 />
+
                 <View style={estilos.menos}>
                     <TouchableOpacity style={estilos.botao} onPress={login}>
                         <Text style={estilos.textoBotao}>Entrar</Text>
@@ -124,7 +129,8 @@ const estilos = StyleSheet.create({
     },
     botao: {
         padding: 18,
-        backgroundColor: '#FF005C',
+        borderWidth:1.5,
+        borderColor: '#FF005C',
         marginTop: 60,
         borderRadius: 30,
     },
@@ -185,7 +191,7 @@ const estilos = StyleSheet.create({
 
     textao:{
         color:'#fff',
-        fontSize:30,
+        fontSize:36,
         fontWeight:'bold'
     },
 });

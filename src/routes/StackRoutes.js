@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../pages/Login';
 import Feed from '../pages/Feed';
 import Home from '../pages/Home'
+import Cadastro from '../pages/Cadastro'
 
 import TabRoutes from './TabRoutes';
 
@@ -31,6 +32,19 @@ export default function StackRoutes() {
 
                 }}
             />
+            
+            <Stake.Screen
+                name="Cadastro"
+                component={Cadastro}
+                options={{
+                    title: 'Login',
+                    headerStyle: {
+                        backgroundColor: "#996DF"
+                    },
+                    headerShown: false
+
+                }}
+            />
 
             <Stake.Screen
                 name="Home2"
@@ -43,13 +57,6 @@ export default function StackRoutes() {
                     headerShown: false
 
                 }}
-            />
-
-            <Stake.Screen
-                name="Feed"
-                component={Feed}
-            //tá errado, o feed é pra 
-            //ser acessivel pelo tab e não pelo stack
             />
 
             <Stake.Screen
