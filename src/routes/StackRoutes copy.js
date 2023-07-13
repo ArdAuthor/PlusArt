@@ -20,19 +20,6 @@ export default function StackRoutes() {
         <Stake.Navigator>
 
             <Stake.Screen
-                name="Login"
-                component={Login}
-                options={{
-                    title: 'Login',
-                    headerStyle: {
-                        backgroundColor: "#996DF"
-                    },
-                    headerShown: false
-
-                }}
-            />
-
-            <Stake.Screen
                 name="Home2"
                 component={Home}
                 options={{

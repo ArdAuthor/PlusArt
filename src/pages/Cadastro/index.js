@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
-import {SvgFacebook, SvgGoogle, SvgArrowLeft} from '../CustomIcons'
+import { SvgFacebook, SvgGoogle, SvgArrowLeft } from '../CustomIcons'
 
 // import Cadastro from ''
 
-export default function Login() {
+export default function Cadastro() {
 
     const [nome, setNome] = useState();
     const [senha, setSenha] = useState();
@@ -35,7 +35,7 @@ export default function Login() {
                 <TextInput
                     style={estilos.input}
                     onChangeText={setNome}
-                    placeholder='Usuário...'
+                    placeholder='Email...'
                     placeholderTextColor={'#000'}
 
                 />
@@ -46,6 +46,15 @@ export default function Login() {
                     placeholderTextColor={'#000'}
 
                 />
+
+                <TextInput
+                    style={estilos.input}
+                    onChangeText={setSenha}
+                    placeholder='Confirme sua senha...'
+                    placeholderTextColor={'#000'}
+
+                />
+
                 <View style={estilos.menos}>
                     <TouchableOpacity style={estilos.botao} onPress={login}>
                         <Text style={estilos.textoBotao}>Entrar</Text>
@@ -56,23 +65,6 @@ export default function Login() {
                         <TouchableOpacity onPress={login}>
                             <Text style={estilos.highText}>Senha</Text>
                         </TouchableOpacity>
-
-                    </View>
-
-
-
-                    <View style={estilos.telaSecundaria}>
-
-                        <View style={estilos.rowBola}>
-                            <TouchableOpacity>
-                               <SvgGoogle/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity>
-                                <SvgFacebook/>
-                            </TouchableOpacity>
-
-                        </View>
 
                     </View>
 
@@ -183,9 +175,9 @@ const estilos = StyleSheet.create({
         borderRadius: 100,
     },
 
-    textao:{
-        color:'#fff',
-        fontSize:30,
-        fontWeight:'bold'
+    textao: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold'
     },
 });
