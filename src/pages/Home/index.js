@@ -18,7 +18,7 @@ export default function Home() {
 
     function Profile() {
         return (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => { }}>
                 <View style={styles.profile}>
                     <SvgProfile />
                 </View>
@@ -34,9 +34,10 @@ export default function Home() {
         return (
 
             <View >
-                <TouchableOpacity onLongPress={() => condition ? setCondition(false) : setCondition(true)} onPress={() =>{}}>
+                <TouchableOpacity onLongPress={() => condition ? setCondition(false) : setCondition(true)} onPress={() => { }}>
                     <View style={styles.drawing}>
-                        <View style={styles.backDrawing}></View>
+                        <View style={condition ? styles.backDrawing : styles.backDrawingGreen}>
+                        </View>
 
                         <View style={styles.flexEnd}>
                             {condition ? <Text style={styles.text}>{titulo}</Text> : <TextInput style={styles.input} onChangeText={setTitulo}>{titulo}</TextInput>}
@@ -54,14 +55,14 @@ export default function Home() {
     return (
 
         <View style={styles.container}>
-            <StatusBar/>
+            <StatusBar />
             <View>
                 <Profile />
             </View>
 
 
             <ScrollView>
-            
+
                 <View style={styles.flexRow}>
                     <View style={styles.gapper}>
                         <Drawing />
@@ -94,19 +95,19 @@ const styles = StyleSheet.create({
     },
 
     flexRow: {
-        flexDirection: 'row', 
-        gap: 40, justifyContent: 'center', 
-        alignItems: 'center', 
-        marginTop: 20 
+        flexDirection: 'row',
+        gap: 40, justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 60
     },
 
     gapper: {
-        gap:20
+        gap: 20
     },
 
     drawing: {
-        width: 120,
-        height: 120,
+        width: 110,
+        height: 110,
         backgroundColor: 'white',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
@@ -114,15 +115,23 @@ const styles = StyleSheet.create({
     },
 
     backDrawing: {
-        width: 120,
+        width: 110,
         height: 15,
         backgroundColor: '#FF005C',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
     },
 
+    backDrawingGreen: {
+        width: 110,
+        height: 15,
+        backgroundColor: '#2DDD69',
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+    },
+
     text: {
-        width: 120,
+        width: 110,
         height: 20,
         backgroundColor: '#FF9EC1',
         color: 'white',
@@ -130,9 +139,9 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        width: '100%',
+        width: 110,
         height: 20,
-        backgroundColor: 'blue',
+        backgroundColor: '#6DE896',
         fontSize: 12,
         color: 'white'
     },
@@ -144,9 +153,9 @@ const styles = StyleSheet.create({
     },
 
     profile: {
-        marginTop:10,
-        marginBottom:10,
-        marginLeft:30,
+        marginTop: 30,
+        marginBottom: 10,
+        marginLeft: 30,
         width: 43,
         height: 43,
         backgroundColor: '#FF005C',

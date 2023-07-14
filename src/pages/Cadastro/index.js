@@ -4,23 +4,39 @@ import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-nativ
 import { useNavigation } from '@react-navigation/native'
 import { SvgFacebook, SvgGoogle, SvgArrowLeft } from '../CustomIcons'
 
+import firebase from '../../services/firebaseConnection';
+
+
 // import Cadastro from ''
 
 export default function Cadastro() {
 
-    const [nome, setNome] = useState();
-    const [senha, setSenha] = useState();
-    const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('')
+    const [confirmarSenha, setConfirmar] = useState('')
 
+    const [erro, setErro] = useState(true)
 
+    async function cadastrar() {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((value) => {
+                //alert(value.user.uid);
+                firebase.database().ref('usuario').child(value.user.uid).set({
+                    nome: name
+                })
 
-    function login() {
-        if (nome === 'Rennan' && senha === 'qwerty') {
-            navigation.navigate('Sobre');
-        }
-        else {
-            alert('Dados Incorretos')
-        }
+                alert('Usuario criado com sucesso!');
+                setName('');
+                setEmail('');
+                setPassword('');
+            })
+            .catch((error) => {
+                alert('Algo deu errado!');
+            })
+            if (confirmarSenha == password) {
+                setCondition(false)
+            }
 
     }
 
@@ -34,30 +50,31 @@ export default function Cadastro() {
 
                 <TextInput
                     style={estilos.input}
-                    onChangeText={setNome}
+                    onChangeText={(texto) => setEmail(texto)}
+                    value={email}
                     placeholder='Email'
                     placeholderTextColor={'#000'}
                     keyboardType='email-address'
                 />
                 <TextInput
                     style={estilos.input}
-                    onChangeText={setSenha}
+                    onChangeText={(texto) => setPassword(texto)}
+                    value={password}
                     placeholder='Senha'
                     placeholderTextColor={'#000'}
                     secureTextEntry={true}
                 />
 
-                <TextInput
-                    style={[estilos.input, estilos.menosMargem ]}
-                    onChangeText={setSenha}
+                {/* <TextInput
+                    style={[estilos.input, estilos.menosMargem]}
+                    onChangeText={setConfirmar}
                     placeholder='Confirme sua senha'
                     placeholderTextColor={'#000'}
                     secureTextEntry={true}
-
-                />
+                /> */}
 
                 <View style={estilos.menos}>
-                    <TouchableOpacity style={estilos.botao} onPress={login}>
+                    <TouchableOpacity style={estilos.botao} onPress={cadastrar}>
                         <Text style={estilos.textoBotao}>Prosseguir</Text>
                     </TouchableOpacity>
 
@@ -69,6 +86,7 @@ export default function Cadastro() {
     );
 
 }
+
 
 const estilos = StyleSheet.create({
     container: {
@@ -87,13 +105,31 @@ const estilos = StyleSheet.create({
 
     input: {
         backgroundColor: '#fff',
-        padding: 12,
-        marginTop: 80,
-        borderRadius: 15
+        padding: 11,
+        marginTop: 70,
+        borderRadius: 15,
 
     },
-    menosMargem:{
-        marginTop:50
+    inputError: {
+        backgroundColor: '#fff',
+        padding: 11,
+        marginTop: 70,
+        borderRadius: 15,
+        borderWidth: 5,
+        borderColor: '#FF005C'
+
+    },
+    inputFine: {
+        backgroundColor: '#fff',
+        padding: 11,
+        marginTop: 70,
+        borderRadius: 15,
+        borderWidth: 5,
+        borderColor: '#2DDD69'
+
+    },
+    menosMargem: {
+        marginTop: 30
     },
     texto: {
         fontSize: 30,
@@ -103,7 +139,7 @@ const estilos = StyleSheet.create({
     botao: {
         padding: 18,
         backgroundColor: '#000',
-        borderWidth:1.5,
+        borderWidth: 1.5,
         borderColor: '#FF005C',
         marginTop: 60,
         borderRadius: 30,

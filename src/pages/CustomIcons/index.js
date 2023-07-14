@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { Path, G, Defs, ClipPath, Circle, } from "react-native-svg"
+import Svg, { Path, G, Defs, ClipPath, Circle, Rect, LinearGradient, Stop,} from "react-native-svg"
 
 function SvgPencil(props) {
   return (
@@ -39,8 +39,8 @@ function SvgPencil(props) {
 function SvgHouse(props) {
   return (
     <Svg
-      width={30}
-      height={30}
+      width={24}
+      height={24}
       viewBox="0 0 33 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +67,8 @@ function SvgHouse(props) {
 function SvgPost(props) {
   return (
     <Svg
-      width={25}
-      height={25}
+      width={24}
+      height={24}
       viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -95,8 +95,8 @@ function SvgPost(props) {
 function SvgRing(props) {
   return (
     <Svg
-      width={25}
-      height={26}
+      width={24}
+      height={25}
       viewBox="0 0 30 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +116,8 @@ function SvgRing(props) {
 function SvgMaca(props) {
   return (
     <Svg
-      width={25}
-      height={26}
+      width={22}
+      height={23}
       viewBox="0 0 31 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -251,6 +251,55 @@ function SvgArrowLeft(props) {
   )
 }
 
+function SvgDefinitivePencil(props) {
+  return (
+    <Svg
+      width={74}
+      height={74}
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Rect width={64} height={64} rx={32} fill="url(#paint0_linear_592_64)" />
+      <Path
+        d="M32 19c-7.18 0-13 5.82-13 13s5.82 13 13 13 13-5.82 13-13-5.82-13-13-13z"
+        stroke="#fff"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M26.8 43.918V34.6l5.2-9.1 5.2 9.1v9.318"
+        stroke="#fff"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M26.8 34.6s1.465 1.3 2.6 1.3 2.6-1.3 2.6-1.3 1.465 1.3 2.6 1.3 2.6-1.3 2.6-1.3"
+        stroke="#fff"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Defs>
+        <LinearGradient
+          id="paint0_linear_592_64"
+          x1={-0.0000011269}
+          y1={6}
+          x2={59}
+          y2={68}
+          gradientUnits="userSpaceOnUse"
+        >
+          <Stop stopColor="#FF005C" />
+          <Stop offset={1} stopColor="#A2325A" />
+        </LinearGradient>
+      </Defs>
+    </Svg>
+  )
+}
+
 export {
   SvgPencil,
   SvgHouse,
@@ -261,7 +310,8 @@ export {
   SvgSeta,
   SvgFacebook,
   SvgGoogle,
-  SvgArrowLeft
+  SvgArrowLeft,
+  SvgDefinitivePencil,
 
 }
 

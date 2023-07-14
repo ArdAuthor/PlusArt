@@ -7,6 +7,7 @@ import { SvgFacebook, SvgGoogle, SvgArrowLeft } from '../CustomIcons'
 import firebase from '../../services/firebaseConnection'
 
 import Cadastro from '../Cadastro';
+import TabRoutes from '../../routes/TabRoutes';
 
 // import Cadastro from ''
 
@@ -28,7 +29,7 @@ export default function Login() {
             }
             await firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((value) => {
-                    navigation.navigate('Home', { user: value.user.email })
+                    navigation.navigate('TabRoutes', { user: value.user.email })
                     //Navegando usuario para Home e levando o email do usuario para a tela home
 
                 })
@@ -135,7 +136,7 @@ const estilos = StyleSheet.create({
 
     input: {
         backgroundColor: '#fff',
-        padding: 12,
+        padding: 11,
         marginTop: 70,
         borderRadius: 15
 

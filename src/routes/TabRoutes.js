@@ -8,9 +8,11 @@ import Feed from '../pages/Feed';
 import Notifications from '../pages/Notifications';
 import Jonas from '../pages/Classes'
 
+import ButtonPencil from '../pages/components/ButtonPencil';
+
 import Feather from 'react-native-vector-icons/Feather';
 
-import { SvgHouse, SvgPost, SvgRing, SvgMaca, SvgPencil } from './../pages/CustomIcons'
+import { SvgHouse, SvgPost, SvgRing, SvgMaca, SvgPencil, SvgDefinitivePencil } from './../pages/CustomIcons'
 
 //import StackRoutes from './StackRoutes';
 
@@ -21,15 +23,30 @@ const Tab = createBottomTabNavigator();
 export default function TabRoutes() {
   return (
     <Tab.Navigator
+      tabBarStyle={{
+
+      }}
       screenOptions={{
-        tabBarInactiveBackgroundColor: '#FF9EC1',
-        tabBarActiveBackgroundColor: '#FF7FAD',
-        tabBarStyle: { height: 70 },
+        tabBarInactiveBackgroundColor: '#fff',
+        tabBarStyle: { height: 80 },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: '#FFF',
-        tabBarInactiveTintColor: '#000'
+        tabBarActiveTintColor: '#FF005C',
+        tabBarInactiveTintColor: '#B9BCBE',
+        tabBarHideOnKeyboard: true
+
       }}
     >
+
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <SvgHouse cor={color} />
+          },
+          headerShown: false
+        }}
+      />
 
       <Tab.Screen
         name="Feed"
@@ -37,6 +54,17 @@ export default function TabRoutes() {
         options={{
           tabBarIcon: ({ color, size }) => {
             return <SvgPost cor={color} />
+          },
+          headerShown: false
+        }}
+      />
+
+      <Tab.Screen
+        name="Feed2"
+        component={Feed}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <ButtonPencil/>
           },
           headerShown: false
         }}
