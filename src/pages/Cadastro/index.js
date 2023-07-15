@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
-import { SvgFacebook, SvgGoogle, SvgArrowLeft } from '../CustomIcons'
+import { SvgFacebook, SvgGoogle, SvgArrowLeft, SvgEye, SvgEyeClosed } from '../CustomIcons'
 
 import firebase from '../../services/firebaseConnection';
 
 
 // import Cadastro from ''
 
+
 export default function Cadastro() {
 
+    const [ olho ,setOlho] = useState(olhoFechado)
+    const [ mostrarSenha, setMostrarSenha] = useState(true)
+
+    const olhoAberto= 'eye'
+    const olhoFechado= 'eye-off';
+
+    function exibirSenha(){
+        if(olho===olhoAberto){
+           setOlho(olhoFechado)
+           setMostrarSenha(true)
+        }else{
+          setOlho(olhoAberto)
+          setMostrarSenha(false)
+        }
+   }
+  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('')
     const [confirmarSenha, setConfirmar] = useState('')
 
-    const [erro, setErro] = useState(true)
 
     async function cadastrar() {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -56,22 +72,20 @@ export default function Cadastro() {
                     placeholderTextColor={'#000'}
                     keyboardType='email-address'
                 />
-                <TextInput
-                    style={estilos.input}
-                    onChangeText={(texto) => setPassword(texto)}
-                    value={password}
-                    placeholder='Senha'
-                    placeholderTextColor={'#000'}
-                    secureTextEntry={true}
-                />
 
-                {/* <TextInput
-                    style={[estilos.input, estilos.menosMargem]}
-                    onChangeText={setConfirmar}
-                    placeholder='Confirme sua senha'
-                    placeholderTextColor={'#000'}
-                    secureTextEntry={true}
-                /> */}
+
+                <View style={[estilos.input, estilos.row, estilos.gapper]}>
+                    <TextInput
+                        onChangeText={(texto) => setPassword(texto)}
+                        value={password}
+                        placeholder='Senha'
+                        placeholderTextColor={'#000'}
+                        secureTextEntry={mostrarSenha}
+                    />
+                    <TouchableOpacity onPress={exibirSenha}>
+                       {olho == olhoFechado ? <SvgEyeClosed name={olho}/> : <SvgEye/>}
+                    </TouchableOpacity>
+                </View>
 
                 <View style={estilos.menos}>
                     <TouchableOpacity style={estilos.botao} onPress={cadastrar}>
@@ -203,5 +217,13 @@ const estilos = StyleSheet.create({
         color: '#fff',
         fontSize: 36,
         fontWeight: 'bold'
+    },
+
+    row:{
+        flexDirection:'row'
+    },
+
+    gapper:{
+        gap:230
     },
 });

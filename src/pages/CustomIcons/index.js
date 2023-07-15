@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { Path, G, Defs, ClipPath, Circle, Rect, LinearGradient, Stop,} from "react-native-svg"
+import Svg, { Path, G, Defs, ClipPath, Circle, Rect, LinearGradient, Stop, } from "react-native-svg"
 
 function SvgPencil(props) {
   return (
@@ -300,6 +300,64 @@ function SvgDefinitivePencil(props) {
   )
 }
 
+function SvgEyeClosed(props) {
+  return (
+    <Svg
+    name='eye-off'
+      width={26}
+      height={26}
+      viewBox="0 0 22 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M1 1l20 20M9.333 9.53a2.222 2.222 0 003.137 3.137"
+        stroke="#000"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M5.847 6.068C3.977 7.378 2.42 9.244 1 11c2.099 3.323 5.869 6.667 10 6.667 1.722 0 3.381-.581 4.883-1.5M11 4.333c4.453 0 7.446 3.51 10 6.667a17.39 17.39 0 01-1.198 1.667"
+        stroke="#000"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+function SvgEye(props) {
+  return (
+    <Svg
+    name='eye'
+      width={26}
+      height={26}
+      viewBox="0 0 22 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M11 9.889a2.222 2.222 0 100-4.444 2.222 2.222 0 000 4.444z"
+        stroke="#000"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M21 7.667c-2.099 3.323-5.869 6.666-10 6.666S3.099 10.99 1 7.667C3.554 4.509 6.547 1 11 1s7.446 3.509 10 6.667z"
+        stroke="#000"
+        strokeWidth={1.7}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
 export {
   SvgPencil,
   SvgHouse,
@@ -312,7 +370,8 @@ export {
   SvgGoogle,
   SvgArrowLeft,
   SvgDefinitivePencil,
-
+  SvgEye,
+  SvgEyeClosed,
 }
 
 
