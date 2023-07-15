@@ -138,6 +138,11 @@ export default function Feed() {
 
 </View>
 
+      
+
+
+      </ScrollView>
+
        <View style={styles.bolinhaSeta}>
 
         <TouchableOpacity style={styles.bolinhaSeta2}>
@@ -147,9 +152,6 @@ export default function Feed() {
         </TouchableOpacity>
 
        </View>
-
-
-      </ScrollView>
 
       <StatusBar style="auto" />
 

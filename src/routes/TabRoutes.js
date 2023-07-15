@@ -8,7 +8,7 @@ import Feed from '../pages/Feed';
 import Notifications from '../pages/Notifications';
 import Jonas from '../pages/Classes'
 
-import ButtonPencil from '../pages/components/ButtonPencil';
+import ButtonPencil from '../components/ButtonPencil';
 
 import Feather from 'react-native-vector-icons/Feather';
 

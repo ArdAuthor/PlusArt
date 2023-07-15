@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput, StatusBar, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 import { SvgPencil, SvgHouse, SvgProfile } from './../CustomIcons'
 
+import Perfil from '../Perfil';
+
 export default function Home() {
+
+    const navigation = useNavigation();
+
 
 
     function createDrawing() {
@@ -16,9 +22,15 @@ export default function Home() {
         )
     }
 
+    function IrProfile() {
+        navigation.navigate('Perfil')
+
+    }
+
     function Profile() {
+
         return (
-            <TouchableOpacity onPress={() => { }}>
+            <TouchableOpacity onPress={IrProfile}>
                 <View style={styles.profile}>
                     <SvgProfile />
                 </View>
@@ -70,6 +82,7 @@ export default function Home() {
                         <Drawing />
                         <Drawing />
                         <Drawing />
+                      
                     </View>
                     <View style={styles.gapper}>
                         <Drawing />
@@ -102,11 +115,11 @@ const styles = StyleSheet.create({
     },
 
     gapper: {
-        gap: 20
+        gap: 42
     },
 
     drawing: {
-        width: 110,
+        width: 120,
         height: 110,
         backgroundColor: 'white',
         borderTopLeftRadius: 15,
@@ -115,7 +128,7 @@ const styles = StyleSheet.create({
     },
 
     backDrawing: {
-        width: 110,
+        width: 120,
         height: 15,
         backgroundColor: '#FF005C',
         borderTopLeftRadius: 15,
@@ -123,7 +136,7 @@ const styles = StyleSheet.create({
     },
 
     backDrawingGreen: {
-        width: 110,
+        width: 120,
         height: 15,
         backgroundColor: '#2DDD69',
         borderTopLeftRadius: 15,
@@ -131,7 +144,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        width: 110,
+        width: 120,
         height: 20,
         backgroundColor: '#FF9EC1',
         color: 'white',
@@ -139,7 +152,7 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        width: 110,
+        width: 120,
         height: 20,
         backgroundColor: '#6DE896',
         fontSize: 12,

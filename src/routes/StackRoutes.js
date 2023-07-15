@@ -11,6 +11,9 @@ import Home from '../pages/Home'
 import Cadastro from '../pages/Cadastro'
 
 import TabRoutes from './TabRoutes';
+import Intro from '../pages/Intro';
+import Introducao from '../pages/Introducao';
+import Perfil from '../pages/Perfil';
 
 // Crindo a navegacao
 
@@ -19,6 +22,32 @@ const Stake = createNativeStackNavigator();
 export default function StackRoutes() {
     return (
         <Stake.Navigator>
+
+            <Stake.Screen
+                name="Intro"
+                component={Intro}
+                options={{
+                    title: 'Login',
+                    headerStyle: {
+                        backgroundColor: "#996DF"
+                    },
+                    headerShown: false
+
+                }}
+            />
+
+            <Stake.Screen
+                name="Introducao"
+                component={Introducao}
+                options={{
+                    title: 'Login',
+                    headerStyle: {
+                        backgroundColor: "#996DF"
+                    },
+                    headerShown: false
+
+                }}
+            />
 
             <Stake.Screen
                 name="Login"
@@ -32,7 +61,7 @@ export default function StackRoutes() {
 
                 }}
             />
-            
+
             <Stake.Screen
                 name="Cadastro"
                 component={Cadastro}
@@ -49,6 +78,19 @@ export default function StackRoutes() {
             <Stake.Screen
                 name="Home"
                 component={Home}
+                options={{
+                    title: 'Meu App',
+                    headerStyle: {
+                        backgroundColor: "#996DF"
+                    },
+                    headerShown: false
+
+                }}
+            />
+
+            <Stake.Screen
+                name="Perfil"
+                component={Perfil}
                 options={{
                     title: 'Meu App',
                     headerStyle: {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
-import { SvgFacebook, SvgGoogle, SvgArrowLeft } from '../CustomIcons'
+import { SvgFacebook, SvgGoogle, SvgArrowLeft, SvgEye, SvgEyeClosed } from '../CustomIcons'
 
 import firebase from '../../services/firebaseConnection'
 
@@ -12,7 +12,24 @@ import TabRoutes from '../../routes/TabRoutes';
 // import Cadastro from ''
 
 export default function Login() {
-   /* console.log('hello world!') */
+
+    const [olho, setOlho] = useState(olhoFechado)
+    const [mostrarSenha, setMostrarSenha] = useState(true)
+
+    const olhoAberto = 'eye'
+    const olhoFechado = 'eye-off';
+
+    function exibirSenha() {
+        if (olho === olhoAberto) {
+            setOlho(olhoFechado)
+            setMostrarSenha(true)
+        } else {
+            setOlho(olhoAberto)
+            setMostrarSenha(false)
+        }
+    }
+
+    /* console.log('hello world!') */
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,103 +38,108 @@ export default function Login() {
         navigation.navigate('Cadastro');
     }
 
-        async function logar() {
+    async function logar() {
 
-            if (email === '' || password === '') {
-                alert('Informe o usuário e a senha');
-                return;
-            }
-            await firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((value) => {
-                    navigation.navigate('TabRoutes', { user: value.user.email })
-                    //Navegando usuario para Home e levando o email do usuario para a tela home
-
-                })
-                .catch((error) => {
-                    alert('Ops algo deu errado!');
-                    return;
-                    //Der algum erro mostrar o alert e barrar aqui.
-                })
-
-            setEmail('');
-            setPassword('');
+        if (email === '' || password === '') {
+            alert('Informe o usuário e a senha');
+            return;
         }
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((value) => {
+                navigation.navigate('TabRoutes', { user: value.user.email })
+                //Navegando usuario para Home e levando o email do usuario para a tela home
 
-        return (
+            })
+            .catch((error) => {
+                alert('Ops algo deu errado!');
+                return;
+                //Der algum erro mostrar o alert e barrar aqui.
+            })
 
-            <View style={estilos.container}>
+        setEmail('');
+        setPassword('');
+    }
 
-                <Text style={estilos.textao}> Login </Text>
+    return (
 
-                <View style={estilos.telaPrimaria}>
+        <View style={estilos.container}>
 
+            <Text style={estilos.textao}> Login </Text>
+
+            <View style={estilos.telaPrimaria}>
+
+                <TextInput
+                    style={estilos.input}
+                    onChangeText={(texto) => setEmail(texto)}
+                    value={email}
+                    placeholder='Email'
+                    placeholderTextColor={'#000'}
+                    keyboardType='email-address'
+
+                />
+                <View style={[estilos.input, estilos.row, estilos.gapper]}>
                     <TextInput
-                        style={estilos.input}
-                        onChangeText={(texto) => setEmail(texto)}
-                        value={email}
-                        placeholder='Email'
-                        placeholderTextColor={'#000'}
-                        keyboardType='email-address'
-
-                    />
-                    <TextInput
-                        style={estilos.input}
+                        style={estilos.textInput}
                         onChangeText={(texto) => setPassword(texto)}
                         value={password}
                         placeholder='Senha'
                         placeholderTextColor={'#000'}
-                        secureTextEntry={true}
-
+                        secureTextEntry={mostrarSenha}
                     />
+                    <TouchableOpacity onPress={exibirSenha}>
+                        {olho == olhoFechado ? <SvgEyeClosed name={olho} /> : <SvgEye />}
+                    </TouchableOpacity>
+                </View>
 
-                    <View style={estilos.menos}>
-                        <TouchableOpacity style={estilos.botao} onPress={logar}>
-                            <Text style={estilos.textoBotao}>Entrar</Text>
+
+
+                <View style={estilos.menos}>
+                    <TouchableOpacity style={estilos.botao} onPress={logar}>
+                        <Text style={estilos.textoBotao}>Entrar</Text>
+                    </TouchableOpacity>
+
+                    <View style={[estilos.textosRow, estilos.marginTopper]}>
+                        <TouchableOpacity onPress={() => { }}>
+                            <Text style={estilos.highText}>Esqueci minha senha</Text>
                         </TouchableOpacity>
-
-                        <View style={[estilos.textosRow, estilos.marginTopper]}>
-                            <Text style={estilos.normalText}>Esqueci minha </Text>
-                            <TouchableOpacity onPress={() => { }}>
-                                <Text style={estilos.highText}>Senha</Text>
-                            </TouchableOpacity>
-
-                        </View>
-
-
-
-                        <View style={estilos.telaSecundaria}>
-
-                            <View style={estilos.rowBola}>
-                                <TouchableOpacity>
-                                    <SvgGoogle />
-                                </TouchableOpacity>
-
-                                <TouchableOpacity>
-                                    <SvgFacebook />
-                                </TouchableOpacity>
-
-                            </View>
-
-                        </View>
-
-                        <View style={estilos.textosRow}>
-
-                            <Text style={estilos.normalText}> Não tem conta? </Text>
-
-                            <TouchableOpacity onPress={cadastro}>
-                                <Text style={estilos.highText}> Inscreva-se</Text>
-
-                            </TouchableOpacity>
-                        </View>
 
                     </View>
 
 
-                </View>
-            </View>
-        );
 
-    }
+                    <View style={estilos.telaSecundaria}>
+
+                        <View style={estilos.rowBola}>
+                            <TouchableOpacity>
+                                <SvgGoogle />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={cadastro}>
+                                <SvgFacebook />
+                            </TouchableOpacity>
+
+                        </View>
+
+                    </View>
+
+                    <View style={estilos.textosRow}>
+
+                        <Text style={estilos.normalText}> Não tem conta? </Text>
+
+                        <TouchableOpacity onPress={cadastro}>
+                            <Text style={estilos.highText}> Inscreva-se</Text>
+
+                        </TouchableOpacity>
+                    </View>
+
+                </View>
+
+
+            </View>
+        </View>
+    );
+
+}
 
 const estilos = StyleSheet.create({
     container: {
@@ -130,8 +152,13 @@ const estilos = StyleSheet.create({
     },
 
     telaPrimaria: {
-        marginTop: '20%',
+        marginTop: '14%',
         flex: 1,
+    },
+
+    textInput: {
+        width:'90%',
+        height:'100%',
     },
 
     input: {
@@ -212,6 +239,14 @@ const estilos = StyleSheet.create({
         color: '#fff',
         fontSize: 36,
         fontWeight: 'bold',
-        marginTop: 40,
+        marginTop: 30,
+    },
+
+    row: {
+        flexDirection: 'row'
+    },
+
+    gapper: {
+        gap: 8
     },
 });

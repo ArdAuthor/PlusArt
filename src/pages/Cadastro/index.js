@@ -12,6 +12,8 @@ import firebase from '../../services/firebaseConnection';
 
 export default function Cadastro() {
 
+    const navigation = useNavigation();
+
     const [ olho ,setOlho] = useState(olhoFechado)
     const [ mostrarSenha, setMostrarSenha] = useState(true)
 
@@ -32,6 +34,10 @@ export default function Cadastro() {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('')
     const [confirmarSenha, setConfirmar] = useState('')
+
+    function Logar (){
+        navigation.navigate('Login')
+    }
 
 
     async function cadastrar() {
@@ -60,6 +66,10 @@ export default function Cadastro() {
 
         <View style={estilos.container}>
 
+            <TouchableOpacity style={{marginTop:4, marginBottom:10}} onPress={Logar}>
+                <SvgArrowLeft/>
+            </TouchableOpacity>
+
             <Text style={estilos.textao}> Cadastro </Text>
 
             <View style={estilos.telaPrimaria}>
@@ -76,6 +86,7 @@ export default function Cadastro() {
 
                 <View style={[estilos.input, estilos.row, estilos.gapper]}>
                     <TextInput
+                        style={estilos.textInput}
                         onChangeText={(texto) => setPassword(texto)}
                         value={password}
                         placeholder='Senha'
@@ -113,14 +124,19 @@ const estilos = StyleSheet.create({
     },
 
     telaPrimaria: {
-        marginTop: '20%',
+        marginTop: '15%',
         flex: 1,
+    },
+
+    textInput: {
+        width:'90%',
+        height:'100%',
     },
 
     input: {
         backgroundColor: '#fff',
         padding: 11,
-        marginTop: 70,
+        marginTop: 60,
         borderRadius: 15,
 
     },
@@ -224,6 +240,6 @@ const estilos = StyleSheet.create({
     },
 
     gapper:{
-        gap:230
+        gap:8
     },
 });

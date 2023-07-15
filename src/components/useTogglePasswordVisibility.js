@@ -1,4 +1,4 @@
-import { SvgEye } from "../CustomIcons";
+import { SvgEye } from "../pages/CustomIcons";
 //import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
