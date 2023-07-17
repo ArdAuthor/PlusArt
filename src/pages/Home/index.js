@@ -30,11 +30,11 @@ export default function Home() {
     function Profile() {
 
         return (
-            <TouchableOpacity onPress={IrProfile}>
-                <View style={styles.profile}>
-                    <SvgProfile />
-                </View>
-            </TouchableOpacity>
+            <View>
+                <TouchableOpacity style={styles.profile} onPress={IrProfile}>
+                        <SvgProfile />
+                </TouchableOpacity>
+            </View>
         )
     }
     function Drawing() {
@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     },
 
     drawing: {
-        width: 120,
-        height: 110,
+        width: 140,
+        height: 150,
         backgroundColor: 'white',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },
 
     backDrawing: {
-        width: 120,
+        width: 140,
         height: 15,
         backgroundColor: '#FF005C',
         borderTopLeftRadius: 15,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
 
     backDrawingGreen: {
-        width: 120,
+        width: 140,
         height: 15,
         backgroundColor: '#2DDD69',
         borderTopLeftRadius: 15,
@@ -144,24 +144,24 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        width: 120,
-        height: 20,
+        width: 140,
+        height: 30,
         backgroundColor: '#FF9EC1',
         color: 'white',
         fontSize: 12,
     },
 
     input: {
-        width: 120,
-        height: 20,
+        width: 140,
+        height: 30,
         backgroundColor: '#6DE896',
         fontSize: 12,
         color: 'white'
     },
 
     flexEnd: {
-        width: 120,
-        height: 105,
+        width: 140,
+        height: 135,
         justifyContent: 'flex-end',
     },
 
@@ -175,5 +175,10 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+
+    textoJonas:{
+        fontSize:10,
+        color:'white'
     },
 });

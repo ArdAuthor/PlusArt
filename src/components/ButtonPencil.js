@@ -13,7 +13,7 @@ export default function ButtonPencil(){
 
 const styles = StyleSheet.create({
     container:{
-        marginBottom:170
+        marginBottom:120
 
     }
 })

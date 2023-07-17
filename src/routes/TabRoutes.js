@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../pages/Home';
 import Feed from '../pages/Feed';
 import Notifications from '../pages/Notifications';
-import Jonas from '../pages/Classes'
+import Teaching from '../pages/Teaching'
 
 import ButtonPencil from '../components/ButtonPencil';
 
@@ -16,7 +16,7 @@ import { SvgHouse, SvgPost, SvgRing, SvgMaca, SvgPencil, SvgDefinitivePencil } f
 
 //import StackRoutes from './StackRoutes';
 
-import Classes from '../pages/Classes';
+import Classes from '../pages/Teaching';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,11 +28,12 @@ export default function TabRoutes() {
       }}
       screenOptions={{
         tabBarInactiveBackgroundColor: '#fff',
-        tabBarStyle: { height: 80 },
-        tabBarShowLabel: false,
+        tabBarStyle: { height: 70 },
+        tabBarShowLabel: true,
         tabBarActiveTintColor: '#FF005C',
         tabBarInactiveTintColor: '#B9BCBE',
-        tabBarHideOnKeyboard: true
+        tabBarHideOnKeyboard: true,
+        tabBarLabelStyle:{marginBottom:'10%'}
 
       }}
     >
@@ -60,7 +61,7 @@ export default function TabRoutes() {
       />
 
       <Tab.Screen
-        name="Feed2"
+        name=" "
         component={Feed}
         options={{
           tabBarIcon: ({ color, size }) => {
@@ -84,7 +85,7 @@ export default function TabRoutes() {
 
       <Tab.Screen
         name="Class"
-        component={Classes}
+        component={Teaching}
         options={{
           //headerShown: false,
           tabBarIcon: ({ color, size }) => {

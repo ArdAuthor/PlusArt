@@ -358,6 +358,94 @@ function SvgEye(props) {
   )
 }
 
+function SvgHeart(props) {
+  return (
+    <Svg
+      width={20}
+      height={18}
+      viewBox="0 0 20 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M19.167 6.123A5.454 5.454 0 0117.65 9.91c-2.238 2.32-4.409 4.74-6.729 6.974a1.343 1.343 0 01-1.885-.04L2.35 9.91C.328 7.815.328 4.432 2.35 2.338a5.115 5.115 0 017.406 0l.244.25.243-.25A5.145 5.145 0 0113.946.75c1.394 0 2.726.572 3.704 1.588a5.454 5.454 0 011.517 3.785z"
+        fill="#FF005C"
+        stroke="#FF005C"
+        strokeWidth={0.5}
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+function SvgHash(props) {
+  return (
+    <Svg
+      width={22}
+      height={22}
+      viewBox="0 0 22 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M21.083 13.75h-5.5v-5.5h5.5a.917.917 0 000-1.833h-5.5v-5.5a.916.916 0 10-1.833 0v5.5h-5.5v-5.5a.917.917 0 00-1.833 0v5.5h-5.5a.917.917 0 100 1.833h5.5v5.5h-5.5a.917.917 0 000 1.833h5.5v5.5a.917.917 0 101.833 0v-5.5h5.5v5.5a.917.917 0 001.833 0v-5.5h5.5a.916.916 0 100-1.833zm-12.833 0v-5.5h5.5v5.5h-5.5z"
+        fill="#fff"
+      />
+    </Svg>
+  )
+}
+
+function SvgReload(props) {
+  return (
+    <Svg
+      width={28}
+      height={28}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M21.888 13.5C21.164 18.311 17.013 22 12 22 6.477 22 2 17.523 2 12S6.477 2 12 2c4.1 0 7.625 2.468 9.168 6"
+        stroke="#fff"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M17 8h4.4a.6.6 0 00.6-.6V3"
+        stroke="#fff"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+function SvgSearch(props) {
+  return (
+    <Svg
+      width={28}
+      height={28}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M17.556 17.556L22 22M2 10.889a8.889 8.889 0 1017.778 0 8.889 8.889 0 00-17.778 0z"
+        stroke="#fff"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
 
 
 export {
@@ -374,6 +462,10 @@ export {
   SvgDefinitivePencil,
   SvgEye,
   SvgEyeClosed,
+  SvgHeart,
+  SvgHash,
+  SvgReload,
+  SvgSearch,
 }
 
 
