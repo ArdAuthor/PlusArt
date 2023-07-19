@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native'
 
 import { SvgPencil, SvgHouse, SvgProfile } from './../CustomIcons'
 
+import Desenhar from '../Desenho'
+
 import Perfil from '../Perfil';
 
 export default function Home() {
@@ -27,6 +29,11 @@ export default function Home() {
 
     }
 
+    function IrDesenhar() {
+        navigation.navigate('Desenhar')
+
+    }
+
     function Profile() {
 
         return (
@@ -46,7 +53,7 @@ export default function Home() {
         return (
 
             <View >
-                <TouchableOpacity onLongPress={() => condition ? setCondition(false) : setCondition(true)} onPress={() => { }}>
+                <TouchableOpacity onLongPress={() => condition ? setCondition(false) : setCondition(true)} onPress={IrDesenhar}>
                     <View style={styles.drawing}>
                         <View style={condition ? styles.backDrawing : styles.backDrawingGreen}>
                         </View>

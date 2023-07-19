@@ -1,86 +1,64 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
+
+import { SvgSetaGreen, SvgSetaBrancaDireita } from '../CustomIcons';
+
 
 export default function Perfil() {
+
+  const navigation = useNavigation();
+
+  function voltarHome () {
+    navigation.navigate('TabRoutes')
+  }
+
+  function LittleDrawings (){
+    return (
+      <View style={styles2.squareHolder}>
+        <View style={styles2.square}>
+        </View>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
 
-      <View style={styles.CaixaMaior}>
+      <StatusBar style={'light'} />
+      <View style={styles.upHolder}>
+        <TouchableOpacity onPress={voltarHome}><SvgSetaGreen/></TouchableOpacity>
+      </View>
 
-        <View style={styles.CaixaUm}>
+      <View style={styles.profileBackground}>
+        <View style={styles.profile}></View>
+      </View>
 
-          <View style={styles.CaixinhaUm}>
-
-            <View style={styles.linhaVerdeUm}>
-
-            </View>
-
-          </View>
-
-          <View style={styles.CaixinhaDois}>
-
-          </View>
-
-          <View style={styles.Foto}>
-
-          </View>
-
-          <View style={styles.CaixaDois}>
-
-            <View style={styles.barraDois}>
-
-              <Text style={styles.placeholder}> Placeholder
-
-              </Text>
-
-            </View>
-
-            <View>
-              <Text style={styles.Placeholder5889}>
-
-                Placeholder#5889
-
-              </Text>
-            </View>
-
-            <View style={styles.caixaTres}>
-
-              <View style={styles.notaDaPessoa}>
-
-                <Text style={styles.letras}> Nota da pessoa nota da pessoa nota da pessoa nota da pessoa nota da pessoanota da pessoa nota da pessoa nota da pessoa nota da pessoa nota da pessoa nota da pessoanota da pessoa nota da pessoa nota da pessoa nota da...</Text>
-
-              </View>
-
-              <View style={styles.linhaVerdeTres}>
-
-              </View>
-
-              <View style={styles.caixaQuatro}>
-
-                <View style={styles.desenho}>
-
-                </View>
-
-                <View style={styles.linhaVerdeQuatro}>
-
-                </View>
-
-                <View style={styles.linha}>
-
-                </View>
-
-              </View>
-
-            </View>
-
-          </View>
-
+      <View style={styles.userNickHolder}>
+        <View>
+          <Text style={styles.textNickname}>Placeholder</Text>
+          <Text style={styles.textUserTag}>Placeholder#5889</Text>
         </View>
+
+        <Pressable><SvgSetaBrancaDireita/></Pressable>
 
       </View>
 
+      {/* <View style={styles.textNoteBg}>
+        <View style={styles.noteHolder}>
+          <Text style={styles.textoNota}> Nota da pessoa nota da pessoa nota da pessoa nota da pessoa nota da pessoa nota da pessoa </Text>
+        </View>
+      </View> */}
 
+      <ScrollView>
+        <View style={styles.scrollContent}>
+          <LittleDrawings/>
+          <LittleDrawings/>
+          <LittleDrawings/>
+          <LittleDrawings/>
+          <LittleDrawings/>
+        </View>
+      </ScrollView>
 
     </View>
   );
@@ -88,161 +66,110 @@ export default function Perfil() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: 'red',
+    flex: 1
+  },
+
+  upHolder: {
+    height: '12%',
+    width: '100%',
+    backgroundColor: 'black',
+    borderBottomWidth: 1.5,
+    borderColor: '#2DDD69',
+    padding:'4%',
+    justifyContent:'flex-end',
+  },
+
+  profileBackground: {
+    width: '100%',
+    height: '28%',
+    padding: '10%',
+    backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+
+  },
+
+  profile: {
+    borderRadius: 100,
+    width: '30%',
+    height: '63%',
+    backgroundColor: 'gray',
+    borderColor:'#2DDD69',
+    borderWidth:1.5,
+  },
+
+  userNickHolder: {
+    width: '100%',
+    height: '11%',
+    backgroundColor: 'black',
+    borderBottomWidth: 1.5,
+    borderColor: '#2DDD69',
+    padding:"4%",
+    flexDirection:'row',
+    alignItems:'center',
+    gap:226,
+  },
+
+  textNoteBg: {
+    width: '100%',
+    height: '20%',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
-
+    borderBottomWidth: 1.5,
+    borderColor: '#2DDD69'
   },
 
-  CaixaMaior: {
-
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -590,
+  noteHolder: {
+    width: '80%',
+    height: '90%',
+    backgroundColor: '#090C19',
+    borderRadius: 5,
+    padding:'6%',
   },
 
-  CaixaUm: {
-
-    alignItems: 'center',
-    width: 435,
-    height: 200,
-    backgroundColor: '#1B1629',
-    marginTop: 41
-
+  textoNota: {
+    color: 'white',
+    fontSize:12,
   },
 
-  CaixinhaUm: {
-
-    width: 435,
-    height: 50,
-    backgroundColor: '#1B1629',
-    marginTop: -40,
+  scrollContent:{
+    width:'100%',
+    height:1200,
+    backgroundColor:'black',
+    alignItems:'center',
+    padding:'4%',
+    gap:80,
   },
 
-  linhaVerdeUm: {
-
-    width: 435,
-    height: 1,
-    backgroundColor: '#2DDD69',
-    marginTop: 50,
-
+  textNickname:{
+    color:'white',
+    fontSize:20,
   },
 
-  Foto: {
-
-    width: 90,
-    height: 90,
-    borderRadius: 60,
-    backgroundColor: '#fff',
-    marginTop: -220
+  textUserTag:{
+    color:'#696969',
+    fontSize:14,
   },
 
-  CaixinhaDois: {
+})
 
-    width: 435,
-    height: 80,
-    backgroundColor: '#000',
-    marginTop: 190,
+const styles2 = StyleSheet.create ({
 
-  },
+    squareHolder:{
+      width:'90%',
+      height:320,
+      backgroundColor:'#090C19',
+      justifyContent:'center',
+      alignItems:'center',
+      borderWidth:1,
+      borderColor:'#2DDD69'
+    },
 
-  barraDois: {
-
-    width: 0,
-    height: 140,
-    backgroundColor: '',
-
-  },
-
-  caixaTres: {
-
-    alignItems: 'center',
-    width: 435,
-    height: 600,
-    backgroundColor: '#000',
-    marginTop: -1
-  },
-
-  notaDaPessoa: {
-
-    alignItems: 'center',
-    width: 290,
-    height: 190,
-    marginTop: 10,
-    borderRadius: 10,
-    backgroundColor: '#1B1629',
-  },
-
-  letras: {
-
-    textAlign: 'left',
-    width: 290,
-    height: 300,
-    color: '#fff',
-    marginTop: 50,
-  },
-
-  linhaVerdeTres: {
-
-    width: 435,
-    height: 1,
-    backgroundColor: '#2DDD69',
-    marginTop: 12,
-
-  },
-
-  desenho: {
-
-    width: 150,
-    height: 150,
-    backgroundColor: '#fff',
-    marginTop: 30,
-    marginLeft: 135,
-
-  },
-
-  linhaVerdeQuatro: {
-
-    width: 435,
-    height: 1,
-    backgroundColor: '#2DDD69',
-    marginTop: 30,
-
-  },
-
-  linha: {
-
-
-    width: 435,
-    height: 1,
-    backgroundColor: '#2DDD69',
-    marginTop: -430,
-  },
-
-  placeholder: {
-
-    width: 200,
-    height: 200,
-    color: '#fff',
-    marginTop: 60,
-    fontSize: 20,
-    marginLeft: 10
-
-  },
-
-  Placeholder5889: {
-
-    width: 200,
-    height: 20,
-    color: '#696969',
-    marginTop: -50,
-    fontSize: 15,
-    marginLeft: 13
-  }
-
-
-
-
-});
+    square:{
+      width:'76%',
+      height:260,
+      backgroundColor:'white'
+    }
+})

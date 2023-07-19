@@ -13,6 +13,7 @@ import Cadastro from '../pages/Cadastro'
 import TabRoutes from './TabRoutes';
 import Intro from '../pages/Intro';
 import Introducao from '../pages/Introducao';
+import Desenhar from '../pages/Desenho';
 import Perfil from '../pages/Perfil';
 
 // Crindo a navegacao
@@ -91,6 +92,19 @@ export default function StackRoutes() {
             <Stake.Screen
                 name="Perfil"
                 component={Perfil}
+                options={{
+                    title: 'Meu App',
+                    headerStyle: {
+                        backgroundColor: "#996DF"
+                    },
+                    headerShown: false
+
+                }}
+            />
+
+            <Stake.Screen
+                name="Desenhar"
+                component={Desenhar}
                 options={{
                     title: 'Meu App',
                     headerStyle: {

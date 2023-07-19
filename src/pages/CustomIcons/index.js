@@ -446,6 +446,48 @@ function SvgSearch(props) {
   )
 }
 
+function SvgSetaGreen(props) {
+  return (
+    <Svg
+      width={29}
+      height={29}
+      viewBox="0 0 29 29"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M19.5 14.5h-10m0 0l4.375 4.375M9.5 14.5l4.375-4.375M14.5 27C21.404 27 27 21.404 27 14.5S21.404 2 14.5 2 2 7.596 2 14.5 7.596 27 14.5 27z"
+        stroke="#2DDD69"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+function SvgSetaBrancaDireita(props) {
+  return (
+    <Svg
+      width={8}
+      height={14}
+      viewBox="0 0 8 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M1 1l6 6-6 6"
+        stroke="#fff"
+        strokeWidth={1.3125}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
 
 
 export {
@@ -466,6 +508,8 @@ export {
   SvgHash,
   SvgReload,
   SvgSearch,
+  SvgSetaGreen,
+  SvgSetaBrancaDireita,
 }
 
 
