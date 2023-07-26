@@ -14,28 +14,28 @@ export default function Cadastro() {
 
     const navigation = useNavigation();
 
-    const [ olho ,setOlho] = useState(olhoFechado)
-    const [ mostrarSenha, setMostrarSenha] = useState(true)
+    const [olho, setOlho] = useState(olhoFechado)
+    const [mostrarSenha, setMostrarSenha] = useState(true)
 
-    const olhoAberto= 'eye'
-    const olhoFechado= 'eye-off';
+    const olhoAberto = 'eye'
+    const olhoFechado = 'eye-off';
 
-    function exibirSenha(){
-        if(olho===olhoAberto){
-           setOlho(olhoFechado)
-           setMostrarSenha(true)
-        }else{
-          setOlho(olhoAberto)
-          setMostrarSenha(false)
+    function exibirSenha() {
+        if (olho === olhoAberto) {
+            setOlho(olhoFechado)
+            setMostrarSenha(true)
+        } else {
+            setOlho(olhoAberto)
+            setMostrarSenha(false)
         }
-   }
-  
+    }
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('')
     const [confirmarSenha, setConfirmar] = useState('')
 
-    function Logar (){
+    function Logar() {
         navigation.navigate('Login')
     }
 
@@ -44,8 +44,9 @@ export default function Cadastro() {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((value) => {
                 //alert(value.user.uid);
-                firebase.database().ref('usuario').child(value.user.uid).set({
-                    nome: name
+                firebase.database().ref(`user/${value.user.uid}`).set({
+                    nome: name,
+                    email: email
                 })
 
                 alert('Usuario criado com sucesso!');
@@ -54,11 +55,14 @@ export default function Cadastro() {
                 setPassword('');
             })
             .catch((error) => {
+                console.log(error)
                 alert('Algo deu errado!');
             })
-            if (confirmarSenha == password) {
-                setCondition(false)
-            }
+
+
+        if (confirmarSenha == password) {
+            setCondition(false)
+        }
 
     }
 
@@ -66,13 +70,21 @@ export default function Cadastro() {
 
         <View style={estilos.container}>
 
-            <TouchableOpacity style={{marginTop:4, marginBottom:10}} onPress={Logar}>
-                <SvgArrowLeft/>
+            <TouchableOpacity style={{marginBottom: 10, marginTop:-20 }} onPress={Logar}>
+                <SvgArrowLeft />
             </TouchableOpacity>
 
             <Text style={estilos.textao}> Cadastro </Text>
 
             <View style={estilos.telaPrimaria}>
+
+                <TextInput
+                    style={estilos.input}
+                    onChangeText={(texto) => setName(texto)}
+                    value={name}
+                    placeholder='Usuário'
+                    placeholderTextColor={'#000'}
+                />
 
                 <TextInput
                     style={estilos.input}
@@ -82,7 +94,6 @@ export default function Cadastro() {
                     placeholderTextColor={'#000'}
                     keyboardType='email-address'
                 />
-
 
                 <View style={[estilos.input, estilos.row, estilos.gapper]}>
                     <TextInput
@@ -94,7 +105,7 @@ export default function Cadastro() {
                         secureTextEntry={mostrarSenha}
                     />
                     <TouchableOpacity onPress={exibirSenha}>
-                       {olho == olhoFechado ? <SvgEyeClosed name={olho}/> : <SvgEye/>}
+                        {olho == olhoFechado ? <SvgEyeClosed name={olho} /> : <SvgEye />}
                     </TouchableOpacity>
                 </View>
 
@@ -124,19 +135,19 @@ const estilos = StyleSheet.create({
     },
 
     telaPrimaria: {
-        marginTop: '15%',
+        marginTop: '12%',
         flex: 1,
     },
 
     textInput: {
-        width:'90%',
-        height:'100%',
+        width: '90%',
+        height: '100%',
     },
 
     input: {
         backgroundColor: '#fff',
         padding: 11,
-        marginTop: 60,
+        marginTop: '14%',
         borderRadius: 15,
 
     },
@@ -232,14 +243,15 @@ const estilos = StyleSheet.create({
     textao: {
         color: '#fff',
         fontSize: 36,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop:-10
     },
 
-    row:{
-        flexDirection:'row'
+    row: {
+        flexDirection: 'row'
     },
 
-    gapper:{
-        gap:8
+    gapper: {
+        gap: 8
     },
 });

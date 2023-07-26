@@ -38,7 +38,7 @@ export default function Login() {
         navigation.navigate('Cadastro');
     }
 
-    async function logar() {
+    async function logar1() {
 
         if (email === '' || password === '') {
             alert('Informe o usuário e a senha');
@@ -58,6 +58,39 @@ export default function Login() {
 
         setEmail('');
         setPassword('');
+    }
+
+    async function logar() {
+        console.log(email.includes("@"))
+        if (email.includes('@')) {
+            await firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((value) => {
+                    navigation.navigate('TabRoutes', { user: value.user.email })
+                    //Navegando usuario para Home e levando o email do usuario para a tela home
+
+                })
+                .catch((error) => {
+                    alert('Ops algo deu errado!');
+                    return;
+                    //Der algum erro mostrar o alert e barrar aqui.
+                })
+        } else {
+            await firebase.database().ref('user').on("value", async (value) => {
+                for (let user in value.val()) {
+                    if (value.val()[user].name === email) {
+                        await firebase.auth().signInWithEmailAndPassword(value.val()[user].email, password)
+                            .then((value) => {
+                                navigation.navigate('TabRoutes', { user: value.user.email })
+
+                            })
+                            .catch((error) => {
+                                alert('Ops algo deu errado!');
+                                return;
+                            })
+                    }
+                }
+            })
+        }
     }
 
     return (
@@ -157,8 +190,8 @@ const estilos = StyleSheet.create({
     },
 
     textInput: {
-        width:'90%',
-        height:'100%',
+        width: '90%',
+        height: '100%',
     },
 
     input: {

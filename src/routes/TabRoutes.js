@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Feed from '../pages/Feed';
 import Notifications from '../pages/Notifications';
 import Teaching from '../pages/Teaching'
+import Aula from '../Aulas'
 
 import ButtonPencil from '../components/ButtonPencil';
 
@@ -17,6 +18,7 @@ import { SvgHouse, SvgPost, SvgRing, SvgMaca, SvgPencil, SvgDefinitivePencil } f
 //import StackRoutes from './StackRoutes';
 
 import Classes from '../pages/Teaching';
+import Teaching00 from '../pages/TeachingDirect';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +35,7 @@ export default function TabRoutes() {
         tabBarActiveTintColor: '#FF005C',
         tabBarInactiveTintColor: '#B9BCBE',
         tabBarHideOnKeyboard: true,
-        tabBarLabelStyle:{marginBottom:'10%'}
+        tabBarLabelStyle: { marginBottom: '10%' }
 
       }}
     >
@@ -65,7 +67,7 @@ export default function TabRoutes() {
         component={Feed}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <ButtonPencil/>
+            return <ButtonPencil />
           },
           headerShown: false
         }}
@@ -84,8 +86,9 @@ export default function TabRoutes() {
       />
 
       <Tab.Screen
+        // "ClassDirect"
         name="Class"
-        component={Teaching}
+        component={Teaching00}
         options={{
           //headerShown: false,
           tabBarIcon: ({ color, size }) => {
@@ -94,6 +97,18 @@ export default function TabRoutes() {
           headerShown: false
         }}
       />
+
+      {/* <Tab.Screen
+        name="Class"
+        component={Aula}
+        options={{
+          //headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return <SvgMaca cor={color} />
+          },
+          headerShown: false
+        }}
+      /> */}
 
     </Tab.Navigator>
   )

@@ -1,21 +1,39 @@
-const [email, setEmail] = useState('Insira seu email');
-  const [password, setPassword] = useState('Insira sua senha');
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-  async function logar() {
-    if (email === '' || password === '') {
-      alert('Informe o usuário e a senha');
-      return;
-    }
+import firebase from '../../services/firebaseConnection';
 
-    await firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((value) => {
-        navigation.navigate('Principal', { user: value.user.email });
+
+export default function Forgot() {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+
+
+  async function resetar() {
+    await firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Voce receberá um e-mail")
       })
       .catch((error) => {
-        alert('Ops algo deu errado!');
-        return;
+        alert('Erro..')
       });
-
-      setEmail('Insira seu email');
-      setPassword('Insira sua senha');
   }
+
+  return (
+    <View style={styles.container}>
+
+    </View>
+  )
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    padding: 30,
+    backgroundColor: 'black',
+    justifyContent: 'space-around'
+
+  },
+})

@@ -15,6 +15,8 @@ import Intro from '../pages/Intro';
 import Introducao from '../pages/Introducao';
 import Desenhar from '../pages/Desenho';
 import Perfil from '../pages/Perfil';
+import Aula from '../Aulas';
+import Teaching from '../pages/Teaching';
 
 // Crindo a navegacao
 
@@ -118,6 +120,19 @@ export default function StackRoutes() {
             <Stake.Screen
                 name="TabRoutes"
                 component={TabRoutes}
+                options={{
+                    title: 'Meu App',
+                    headerStyle: {
+                        backgroundColor: "#996DF"
+                    },
+                    headerShown: false
+
+                }}
+            />
+
+            <Stake.Screen
+                name="Teaching"
+                component={Aula}
                 options={{
                     title: 'Meu App',
                     headerStyle: {

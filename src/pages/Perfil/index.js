@@ -165,6 +165,7 @@ const styles2 = StyleSheet.create ({
       alignItems:'center',
       borderWidth:1,
       borderColor:'#2DDD69'
+      
     },
 
     square:{

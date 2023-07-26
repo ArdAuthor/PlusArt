@@ -13,6 +13,8 @@ import Feed from './src/pages/Feed';
 import TabRoutes from './src/routes/TabRoutes';
 import StackRoutes from './src/routes/StackRoutes';
 
+import Teaching00 from './src/pages/TeachingDirect';
+
 // Crindo a navegacao
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +23,7 @@ export default function App() {
   return (
     <NavigationContainer>
         <StackRoutes/>
+        {/* <Teaching00/> */}
     </NavigationContainer>
   )
 }
